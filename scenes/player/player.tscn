@@ -1,0 +1,55 @@
+[gd_scene load_steps=12 format=3 uid="uid://bwxnon8pkjtbn"]
+
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_883oo"]
+[ext_resource type="Texture2D" uid="uid://dk10tyvsw5711" path="res://assets/icon.svg" id="1_iqt6b"]
+[ext_resource type="Script" path="res://scripts/managers/state_machine.gd" id="3_dn5xe"]
+[ext_resource type="Script" path="res://scripts/player/idle.gd" id="4_yljyd"]
+[ext_resource type="Script" path="res://scripts/player/walk.gd" id="5_nypq0"]
+[ext_resource type="Script" path="res://scripts/player/jump.gd" id="6_1wij2"]
+[ext_resource type="Script" path="res://scripts/player/falling.gd" id="7_44nnw"]
+[ext_resource type="Script" path="res://scripts/player/run.gd" id="8_evsd6"]
+[ext_resource type="Script" path="res://scripts/player/double_jump.gd" id="9_beb52"]
+[ext_resource type="Script" path="res://scripts/player/dash.gd" id="10_yyj3y"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_030pa"]
+radius = 18.0
+height = 80.0
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_883oo")
+smooth_movement_enabled = false
+run_speed = 800.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.5, 0)
+scale = Vector2(0.304688, 0.625)
+texture = ExtResource("1_iqt6b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 1)
+shape = SubResource("CapsuleShape2D_030pa")
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_dn5xe")
+initial_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="State Machine"]
+script = ExtResource("4_yljyd")
+
+[node name="walk" type="Node" parent="State Machine"]
+script = ExtResource("5_nypq0")
+
+[node name="jump" type="Node" parent="State Machine"]
+script = ExtResource("6_1wij2")
+
+[node name="falling" type="Node" parent="State Machine"]
+script = ExtResource("7_44nnw")
+
+[node name="run" type="Node" parent="State Machine"]
+script = ExtResource("8_evsd6")
+
+[node name="double_jump" type="Node" parent="State Machine"]
+script = ExtResource("9_beb52")
+
+[node name="dash" type="Node" parent="State Machine"]
+script = ExtResource("10_yyj3y")

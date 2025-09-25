@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://1dbrpmnuopfn"]
+
+[ext_resource type="PackedScene" uid="uid://bwxnon8pkjtbn" path="res://scenes/player/player.tscn" id="1_r8bvr"]
+[ext_resource type="PackedScene" uid="uid://b5dch4ln74lju" path="res://scenes/props/world_boundary.tscn" id="2_o5546"]
+
+[node name="main" type="Node2D"]
+position = Vector2(0, -1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="player" parent="." instance=ExtResource("1_r8bvr")]
+position = Vector2(-8, 8)
+
+[node name="world_boundary" parent="." instance=ExtResource("2_o5546")]
+position = Vector2(-189, 189)
