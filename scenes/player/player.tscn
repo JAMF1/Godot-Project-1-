@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwxnon8pkjtbn"]
+[gd_scene load_steps=13 format=3 uid="uid://bwxnon8pkjtbn"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_883oo"]
 [ext_resource type="Texture2D" uid="uid://dk10tyvsw5711" path="res://assets/icon.svg" id="1_iqt6b"]
@@ -11,6 +11,10 @@
 [ext_resource type="Script" path="res://scripts/player/double_jump.gd" id="9_beb52"]
 [ext_resource type="Script" path="res://scripts/player/dash.gd" id="10_yyj3y"]
 
+[sub_resource type="Curve" id="Curve_ulsg4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.890135, 0.714527), -1.17101, -1.17101, 0, 0, Vector2(1, 0.472973), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_030pa"]
 radius = 18.0
 height = 80.0
@@ -18,7 +22,7 @@ height = 80.0
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_883oo")
 smooth_movement_enabled = false
-run_speed = 800.0
+dash_curve = SubResource("Curve_ulsg4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1.5, 0)

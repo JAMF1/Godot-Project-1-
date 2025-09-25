@@ -27,6 +27,8 @@ func Physics_Update(_delta):
 		player.velocity.x = move_toward(player.velocity.x, 
 		dir * player.speed, 
 		player.speed * player.acceleration)
+		#player.dash_direction = dir
 		
 	else:
 		player.velocity.x = dir * player.run_speed 
+		#player.dash_direction = dir

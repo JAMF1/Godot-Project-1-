@@ -32,6 +32,9 @@ func Update(_delta):
 	elif player.is_on_floor(): 
 		Transition.emit(self.name, "idle")
 
+	if Input.is_action_just_pressed("dash") and player.can_dash:
+		Transition.emit(self.name, "dash")
+
 func Physics_Update(delta): 
 	jump_buffer_clock = max(jump_buffer_clock - delta, 0)
 	coyote_time_clock = max(coyote_time_clock - delta, 0)

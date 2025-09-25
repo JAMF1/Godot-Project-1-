@@ -11,6 +11,10 @@ func Enter():
 
 
 func Physics_Update(delta): 
+	#Dash
+	if Input.is_action_just_pressed("dash") and player.can_dash:
+		Transition.emit(self.name, "dash")
+		
 	if not player.is_on_floor():
 		player.velocity.y += player.gravity * delta
 		
@@ -19,6 +23,3 @@ func Physics_Update(delta):
 	
 	if player.velocity.y >= -50:
 		Transition.emit(self.name,"falling")
-
-func Exit():
-	pass

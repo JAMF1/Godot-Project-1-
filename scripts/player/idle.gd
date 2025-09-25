@@ -18,13 +18,12 @@ func Update(_delta):
 	#Falling
 	if not player.is_on_floor():
 		Transition.emit(self.name, "falling")
-
 	#Dash
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and player.can_dash:
 		Transition.emit(self.name, "dash")
-	
 
-func Physics_Update(delta):
+
+func Physics_Update(_delta):
 	if player.smooth_movement_enabled:
 		player.velocity.x = move_toward(player.velocity.x,
 		0, 

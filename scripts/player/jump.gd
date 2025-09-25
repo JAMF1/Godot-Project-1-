@@ -21,5 +21,8 @@ func Physics_Update(delta):
 	var direction = Input.get_axis("move_left","move_right")
 	player.velocity.x = direction * player.speed
 	
+	if Input.is_action_just_pressed("dash") and player.can_dash:
+		Transition.emit(self.name, "dash")
+		
 	if player.velocity.y >= -50:
 		Transition.emit(self.name,"falling")

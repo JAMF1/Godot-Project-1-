@@ -22,6 +22,10 @@ func Update(_delta):
 	if not player.is_on_floor():
 		Transition.emit(self.name, "falling")
 
+	#Dash
+	if Input.is_action_just_pressed("dash") and player.can_dash:
+		Transition.emit(self.name, "dash")
+	
 
 func Physics_Update(_delta):
 	var dir = Input.get_axis("move_left","move_right")
@@ -30,6 +34,8 @@ func Physics_Update(_delta):
 		player.velocity.x = move_toward(player.velocity.x, 
 		dir * player.speed, 
 		player.speed * player.acceleration)
+		#player.dash_direction = dir
 		
 	else:
 		player.velocity.x = dir * player.walking_speed 
+		#player.dash_direction = dir
